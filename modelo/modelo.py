@@ -11,8 +11,8 @@ modelo = joblib.load(joblib_in)
 features = modelo.get_booster().feature_names
 feature_types = modelo.get_booster().feature_types
 categorias = [
-    "Es probable que el estudiante continue con sus estudios. No Abandona",
-    "Es probable que el estudiante abandone sus estudios. Abandona",
+    "No Abandona - Es probable que el estudiante continue con sus estudios",
+    "Abandona - Es probable que el estudiante abandone sus estudios",
 ] 
 
 

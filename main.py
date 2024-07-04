@@ -2,8 +2,12 @@ from fastapi import FastAPI, HTTPException
 from modelo.modelo import __version__ as version, modelo, categorias
 from modelo.estudiante import Estudiante, Prediccion
 import numpy as np
-
-app = FastAPI()
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
+origins = ['*'] 
+app = FastAPI(middleware=[
+    Middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
+])
 
 @app.get('/')
 def index():
@@ -45,7 +49,6 @@ def predict(data: Estudiante):
         estudiante = np.asarray([[EstadoCivil,ModoAplic,OrdenAplic,Curso,AsistDiaNoche,TitulPrevia,Desplazado,NecesidadesEducativasEspeciales,Deudor,MatriculasAlDia,Genero,Becario,EdadInscripcion,UC1erSemestreMatriculadas,UC1erSemestreEvaluaciones,UC1erSemestreAprobadas,UC1erSemestreCalificacion,UC1erSemestreSinEvaluaciones,UC2doSemestreMatriculadas,UC2doSemestreEvaluaciones,UC2doSemestreAprobadas,UC2doSemestreCalificacion,UC2doSemestreSinEvaluaciones]])
         prediction = modelo.predict(estudiante)
         categoria = categorias[prediction[0]]
-        #categoria = "Abandona"
         return {
             'prediction': categoria
         }
