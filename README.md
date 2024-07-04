@@ -17,15 +17,22 @@ source venv/bin/activate
 
 ### 2. Dependencias necesarias
 
-Abra una terminal y ejecute:
+Abra una terminal y ejecute. Si cuenta con un entorno virtual ejecutar en este:
 
 ```bash
-pip install uvicorn fastapi joblib xgboost starlette
+pip install uvicorn fastapi joblib xgboost starlette streamlit
 ```
 
-### 3. Iniciar el servidor
-Abra una terminal y ejecute:
+### 3. Iniciar el servidor backend
+Abra una terminal y ejecute. Si cuenta con un entorno virtual ejecutar en este:
 
 ```bash
 uvicorn main:app --reload
+```
+
+### 4. Iniciar el servidor frontend
+Abra una terminal y ejecute. Si cuenta con un entorno virtual ejecutar en este:
+
+```bash
+streamlit run app.py
 ```
